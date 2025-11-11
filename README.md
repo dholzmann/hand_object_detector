@@ -18,28 +18,13 @@ More information can be found at our:
 
 ## Prerequisites
 [New] Now, it is compatible with newer pytorch version. Thanks [ajonnavittula](https://github.com/ajonnavittula) and [relh](https://github.com/relh) for helping figure out the compile files.
-Create a conda env called handobj_new, install pytorch-1.12.1, cuda-11.3:
-* python=3.8
-* cudatoolkit=11.3
-* pytorch=1.12.1
+
 ```
-conda create --name handobj_new python=3.8
+conda create --name handobj_new python=3.10
 conda activate handobj_new
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch-nightly -c nvidia
+
 ```
-
-
-
-[Old, deprecated] Create a conda env called handobj, install pytorch-1.0.1, cuda-10.0:
-* Python 3.6
-* Pytorch 1.0
-* CUDA 10.0
-```
-conda create --name handobj python=3.6
-conda activate handobj
-conda install pytorch=1.0.1 torchvision cudatoolkit=10.0 -c pytorch
-```
-
 
 ## Preparation
 
@@ -54,12 +39,6 @@ git clone https://github.com/ddshan/hand_object_detector && cd hand_object_detec
 Install all the python dependencies using pip:
 ```
 pip install -r requirements.txt
-```
-
-Compile the cuda dependencies using following simple commands:
-```
-cd lib
-python setup.py build develop
 ```
 
 <!-- You will meet some errors about coco dataset: (not the best but the easiest solution)

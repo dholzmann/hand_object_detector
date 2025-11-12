@@ -4,12 +4,12 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
 import torchvision.models as models
-from model.utils.config import cfg
+from hoi_lib.model.utils.config import cfg
 import cv2
 import pdb
 import random
 from PIL import Image, ImageDraw, ImageFont
-from model.utils.viz_hand_obj import *
+from hoi_lib.model.utils.viz_hand_obj import *
 
 def save_net(fname, net):
     import h5py
@@ -96,7 +96,7 @@ def vis_detections_filtered_objects(im, obj_dets, hand_dets, thresh=0.8):
 
 
 
-def vis_detections_filtered_objects_PIL(im, obj_dets, hand_dets, thresh_hand=0.8, thresh_obj=0.01, font_path='lib/model/utils/times_b.ttf'):
+def vis_detections_filtered_objects_PIL(im, obj_dets, hand_dets, thresh_hand=0.8, thresh_obj=0.01, font_path='hoi_lib/model/utils/times_b.ttf'):
 
     # convert to PIL
     im = im[:,:,::-1]

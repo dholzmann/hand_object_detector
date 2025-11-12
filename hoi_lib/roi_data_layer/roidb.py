@@ -4,8 +4,8 @@ from __future__ import division
 from __future__ import print_function
 
 import numpy as np
-from lib.model.utils.config import cfg
-from lib.datasets.factory import get_imdb
+from hoi_lib.model.utils.config import cfg
+from hoi_lib.datasets.factory import get_imdb
 import PIL
 import pdb
 

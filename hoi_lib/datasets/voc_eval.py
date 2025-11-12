@@ -14,7 +14,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 #sys.path.append('/y/dandans/Hand_Object_Detection/faster-rcnn.pytorch/lib/model/utils')
-# from lib.datasets.viz_hand_obj_debug import *
+# from hoi_lib.datasets.viz_hand_obj_debug import *
 
 def parse_rec(filename):
   """ Parse a PASCAL VOC xml file """

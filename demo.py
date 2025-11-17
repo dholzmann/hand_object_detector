@@ -26,17 +26,17 @@ from PIL import Image
 import torchvision.transforms as transforms
 import torchvision.datasets as dset
 # from scipy.misc import imread
-from lib.roi_data_layer.roidb import combined_roidb
-from lib.roi_data_layer.roibatchLoader import roibatchLoader
-from lib.model.utils.config import cfg, cfg_from_file, cfg_from_list, get_output_dir
-from lib.model.rpn.bbox_transform import clip_boxes
+from hoi_lib.roi_data_layer.roidb import combined_roidb
+from hoi_lib.roi_data_layer.roibatchLoader import roibatchLoader
+from hoi_lib.model.utils.config import cfg, cfg_from_file, cfg_from_list, get_output_dir
+from hoi_lib.model.rpn.bbox_transform import clip_boxes
 # from model.nms.nms_wrapper import nms
 from torchvision.ops import nms
-from lib.model.rpn.bbox_transform import bbox_transform_inv
-from lib.model.utils.net_utils import save_net, load_net, vis_detections, vis_detections_PIL, vis_detections_filtered_objects_PIL, vis_detections_filtered_objects # (1) here add a function to viz
-from lib.model.utils.blob import im_list_to_blob
-from lib.model.faster_rcnn.vgg16 import vgg16
-from lib.model.faster_rcnn.resnet import resnet
+from hoi_lib.model.rpn.bbox_transform import bbox_transform_inv
+from hoi_lib.model.utils.net_utils import save_net, load_net, vis_detections, vis_detections_PIL, vis_detections_filtered_objects_PIL, vis_detections_filtered_objects # (1) here add a function to viz
+from hoi_lib.model.utils.blob import im_list_to_blob
+from hoi_lib.model.faster_rcnn.vgg16 import vgg16
+from hoi_lib.model.faster_rcnn.resnet import resnet
 import pdb
 
 try:

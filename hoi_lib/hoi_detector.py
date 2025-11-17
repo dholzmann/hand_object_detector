@@ -139,7 +139,7 @@ def _get_image_blob(im: np.ndarray):
 
 class HOIDetector(torch.nn.Module):
 
-    def __init__(self, base_dir, load_dir="models", net="res101", dataset="pascal_voc", class_agnostic=False, checksession=1, checkepoch=8, checkpoint=132028, device='cpu', ths_hand=0.5, ths_obj=0.5):
+    def __init__(self, base_dir, load_dir="models", net="res101", dataset="pascal_voc", class_agnostic=False, checksession=1, checkepoch=8, checkpoint=132028, device='cpu', ths_hand=0.5, ths_obj=0.5, num_points_per_img=5):
         super().__init__()
         self.model = load_model(base_dir, load_dir, net, dataset, class_agnostic, checksession, checkepoch, checkpoint, device)
         self.device = device
@@ -147,6 +147,7 @@ class HOIDetector(torch.nn.Module):
         self.model.eval()
         self.ths_hand = ths_hand
         self.ths_obj = ths_obj
+        self.num_points = num_points_per_img
         self.class_agnostic = class_agnostic
 
     def _fwd(self, im: np.ndarray):
@@ -254,10 +255,14 @@ class HOIDetector(torch.nn.Module):
         obj_dets, hand_dets = [], []
         for image in images:
             o, h = self._fwd(image)
-            o_bbox = np.round(o[:4]).astype(np.int32)
-            h_bbox = np.round(h[:4]).astype(np.int32)
-            obj_dets.append(o)
-            hand_dets.append(h)
+            pad_rows_o = self.num_points - o.shape[0]
+            pad_rows_h = self.num_points - h.shape[0]
+            o_padded = np.pad(o, ((0, pad_rows_o), (0, 0)), mode='constant', constant_values=0)
+            h_padded = np.pad(h, ((0, pad_rows_h), (0, 0)), mode='constant', constant_values=0)
+            o_bbox = np.round(o_padded[:4]).astype(np.int32)
+            h_bbox = np.round(h_padded[:4]).astype(np.int32)
+            obj_dets.append(o_padded)
+            hand_dets.append(h_padded)
         return np.concatenate(obj_dets), np.concatenate(hand_dets)
 
 
